@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality AI | Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link ref="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container predict-container">
+        <div class="glass-card">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-color);">Air Quality Property
+                Prediction</h2>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label>NO2 Min</label>
+                    <input type="number" step="any" name="no2_min" class="form-control" value="{{ values.no2_min }}"
+                        placeholder="e.g. 10.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label>NO2 Max</label>
+                    <input type="number" step="any" name="no2_max" class="form-control" value="{{ values.no2_max }}"
+                        placeholder="e.g. 50.2" required>
+                </div>
+
+                <div class="form-group">
+                    <label>NOx Min</label>
+                    <input type="number" step="any" name="nox_min" class="form-control" value="{{ values.nox_min }}"
+                        placeholder="e.g. 15.0" required>
+                </div>
+
+                <div class="form-group">
+                    <label>NOx Max</label>
+                    <input type="number" step="any" name="nox_max" class="form-control" value="{{ values.nox_max }}"
+                        placeholder="e.g. 100.8" required>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn-predict btn-primary"
+                        style="flex: 1; border: none; cursor: pointer; text-align: center;">Predict</button>
+                    <button type="button" class="btn-clear" onclick="window.location.href='/predict'"
+                        style="flex: 1; padding: 14px; border-radius: 12px; border: 1px solid #ccc; background: white; cursor: pointer;">Clear</button>
+                </div>
+
+                <div style="margin-top: 1rem; text-align: center;">
+                    <a href="/" style="color: var(--text-light); text-decoration: none; font-size: 0.9rem;">Back To
+                        Home</a>
+                </div>
+            </form>
+
+            {% if prediction %}
+            <div
+                style="margin-top: 2rem; text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.5); border-radius: 12px;">
+                <span
+                    style="font-size: 0.9rem; color: var(--text-light); text-transform: uppercase; font-weight: 600;">Predicted
+                    CO Level</span>
+                <span
+                    style="display: block; font-size: 2.5rem; font-weight: 800; color: var(--secondary-color); margin: 0.5rem 0;">{{
+                    prediction }}</span>
+                <span style="font-size: 0.8rem; opacity: 0.7;">mg/m³</span>
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div
+                style="margin-top: 1.5rem; padding: 1rem; background: #fee2e2; color: #ef4444; border-radius: 12px; text-align: center;">
+                ⚠️ {{ error }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-toggler">
+        <span class="material-symbols-outlined">chat_bubble</span>
+    </div>
+
+    <div class="chatbot-window">
+        <div class="chat-header">
+            <h4>AI Assistant</h4>
+            <span class="material-symbols-outlined">smart_toy</span>
+        </div>
+        <div class="chat-body">
+            <div class="chat-message bot">
+                Hi there! 👋 <br> I can help explain the prediction results.
+            </div>
+        </div>
+        <div class="chat-suggestions">
+            <span class="suggestion-chip">What is CO?</span>
+            <span class="suggestion-chip">Health Risks</span>
+            <span class="suggestion-chip">Is the air good?</span>
+            <span class="suggestion-chip">Sources</span>
+        </div>
+        <div class="chat-footer">
+            <input type="text" class="chat-input" placeholder="Ask something...">
+            <button class="send-btn">
+                <span class="material-symbols-outlined">send</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

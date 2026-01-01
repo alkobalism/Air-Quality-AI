@@ -1,0 +1,22 @@
+=== How to Run the Air Quality Prediction App ===
+
+OPTION 1: The Easy Way (Recommended)
+------------------------------------
+1. Open this folder.
+2. Double-click the file named "run_app.bat".
+3. A terminal window will open, and the app will start.
+4. Open your web browser and go to: http://127.0.0.1:5000
+
+OPTION 2: The Manual Way (Command Line)
+---------------------------------------
+1. Open a terminal (PowerShell or Command Prompt) in this folder.
+2. Activate the virtual environment:
+   .\tf_env\Scripts\Activate.ps1
+3. Run the application:
+   python app.py
+4. Open your browser to http://127.0.0.1:5000
+
+TROUBLESHOOTING
+---------------
+- If the app closes immediately, check if another program is using port 5000.
+- Ensure the "tf_env" folder exists in this directory.
