@@ -4,6 +4,24 @@ echo ===================================================
 echo     Setting up Air Quality AI for New User
 echo ===================================================
 
+REM 0. Check for Admin Privileges (Required for Long Paths fix)
+NET SESSION >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Requesting Administrator privileges to enable Long Paths...
+    powershell -Command "Start-Process '%~dpnx0' -Verb RunAs"
+    exit /b
+)
+
+REM 0a. Enable Long Paths (Fix for deep TensorFlow paths)
+echo Enabling Windows Long Paths Support...
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /t REG_DWORD /d 1 /f >nul
+if %errorlevel% equ 0 (
+    echo Long Paths Enabled.
+) else (
+    echo WARNING: Failed to enable Long Paths. You might see installation errors.
+)
+echo.
+
 REM 1. Check for compatible Python version (3.10 - 3.11)
 python -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) and sys.version_info < (3, 12) else 1)" >nul 2>&1
 if %errorlevel% equ 0 goto :FOUND_PYTHON
