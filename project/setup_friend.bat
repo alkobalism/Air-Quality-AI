@@ -3,6 +3,21 @@ echo ===================================================
 echo     Setting up Air Quality AI for the first time
 echo ===================================================
 
+
+echo Checking Python version...
+python -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) and sys.version_info < (3, 12) else 1)"
+if %errorlevel% neq 0 (
+    echo.
+    echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo ERROR: Incompatible Python version found.
+    echo Please install Python 3.11 from python.org
+    echo Current version:
+    python --version
+    echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    pause
+    exit /b 1
+)
+
 if not exist "tf_env" (
     echo [1/3] Creating virtual environment...
     python -m venv tf_env
