@@ -1,5 +1,7 @@
 @echo off
 setlocal
+cd /d "%~dp0"
+
 echo ===================================================
 echo     Setting up Air Quality AI for New User
 echo ===================================================
@@ -12,7 +14,10 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-REM 0a. Enable Long Paths (Fix for deep TensorFlow paths)
+REM 0a. Change directory AGAIN after admin elevation (just in case)
+cd /d "%~dp0"
+
+REM 0b. Enable Long Paths (Fix for deep TensorFlow paths)
 echo Enabling Windows Long Paths Support...
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem" /v LongPathsEnabled /t REG_DWORD /d 1 /f >nul
 if %errorlevel% equ 0 (
@@ -69,7 +74,7 @@ echo.
 echo IMPORTANT: You MUST restart this script for the changes to take effect.
 echo Please close this window and run 'setup_new_user.bat' again.
 echo ===================================================
-pause
+timeout /t 10
 exit /b 0
 
 :MANUAL_INSTALL
