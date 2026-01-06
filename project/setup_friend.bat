@@ -14,6 +14,8 @@ if %errorlevel% neq 0 (
     echo Current version:
     python --version
     echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    echo Opening Python 3.11 download page...
+    start https://www.python.org/downloads/release/python-3119/
     pause
     exit /b 1
 )
