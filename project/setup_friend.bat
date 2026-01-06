@@ -11,6 +11,7 @@ if not exist "tf_env" (
 )
 
 echo [2/3] Installing dependencies (this may take a few minutes)...
+".\tf_env\Scripts\python.exe" -m pip install --upgrade pip
 ".\tf_env\Scripts\python.exe" -m pip install -r requirements.txt
 if %errorlevel% neq 0 (
     echo.
