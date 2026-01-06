@@ -4,8 +4,9 @@ OPTION 1: First Time Setup (Do this first!)
 -------------------------------------------
 If you have just downloaded this project or moved it to a new computer:
 
-1. Double-click "setup_friend.bat".
+1. Double-click "setup_new_user.bat".
 2. Wait for it to finish. It will:
+   - Check and install Python if missing.
    - Create a hidden folder `tf_env` for dependencies.
    - Install all required libraries (Flask, TensorFlow, etc.).
    - Automatically launch the app when done.
@@ -37,6 +38,6 @@ If you prefer using the command line (Terminal / PowerShell):
 
 TROUBLESHOOTING
 ---------------
-- "Flask module not found": Run "setup_friend.bat" again to ensure dependencies are installed.
+- "Flask module not found": Run "setup_new_user.bat" again to ensure dependencies are installed.
 - App closes immediately: Check if you have the `tf_env` folder. If not, run Option 1.
 - Port already in use: Make sure you don't have another instance of the app running.
