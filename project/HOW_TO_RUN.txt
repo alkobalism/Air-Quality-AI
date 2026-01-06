@@ -1,22 +1,42 @@
 === How to Run the Air Quality Prediction App ===
 
-OPTION 1: The Easy Way (Recommended)
-------------------------------------
-1. Open this folder.
-2. Double-click the file named "run_app.bat".
-3. A terminal window will open, and the app will start.
-4. Open your web browser and go to: http://127.0.0.1:5000
+OPTION 1: First Time Setup (Do this first!)
+-------------------------------------------
+If you have just downloaded this project or moved it to a new computer:
 
-OPTION 2: The Manual Way (Command Line)
----------------------------------------
-1. Open a terminal (PowerShell or Command Prompt) in this folder.
+1. Double-click "setup_friend.bat".
+2. Wait for it to finish. It will:
+   - Create a hidden folder `tf_env` for dependencies.
+   - Install all required libraries (Flask, TensorFlow, etc.).
+   - Automatically launch the app when done.
+3. If successful, it will tell you to open http://127.0.0.1:5000 in your browser.
+4. If it fails, the window will stay open with an error message. Check your internet connection.
+
+OPTION 2: Regular Use (The Easy Way)
+------------------------------------
+Once you have done the setup once, you can just do this every time:
+
+1. Double-click "run_app.bat".
+2. A terminal window will open to start the server.
+3. Open your web browser and go to: http://127.0.0.1:5000
+   (Keep the terminal window open while using the app).
+
+OPTION 3: The Manual Way (For Developers)
+-----------------------------------------
+If you prefer using the command line (Terminal / PowerShell):
+
+1. Open a terminal in this folder.
 2. Activate the virtual environment:
-   .\tf_env\Scripts\Activate.ps1
+   For Windows PowerShell:
+     .\tf_env\Scripts\Activate.ps1
+   For Command Prompt (cmd):
+     .\tf_env\Scripts\activate.bat
 3. Run the application:
-   python app.py
-4. Open your browser to http://127.0.0.1:5000
+     python app.py
+4. Go to http://127.0.0.1:5000
 
 TROUBLESHOOTING
 ---------------
-- If the app closes immediately, check if another program is using port 5000.
-- Ensure the "tf_env" folder exists in this directory.
+- "Flask module not found": Run "setup_friend.bat" again to ensure dependencies are installed.
+- App closes immediately: Check if you have the `tf_env` folder. If not, run Option 1.
+- Port already in use: Make sure you don't have another instance of the app running.
